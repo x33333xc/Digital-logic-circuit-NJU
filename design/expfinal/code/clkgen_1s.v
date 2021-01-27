@@ -1,0 +1,25 @@
+module clkgen_1s(
+	input clk_1s,
+	input reset,
+	output reg [9:0]count_time
+	);
+reg [5:0] count5;
+always@(negedge clk_1s)//时间计数
+begin
+	if (reset)
+	begin
+	count_time=0;
+	count5=0;
+	end
+	else begin
+	if(count5==30)
+	begin
+	count5=0;
+	count_time=count_time+1;
+	end
+	else
+	count5=count5+1;
+	end
+end
+
+endmodule
